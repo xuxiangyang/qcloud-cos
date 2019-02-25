@@ -1,0 +1,35 @@
+PATH
+  remote: .
+  specs:
+    qcloud_cos (0.0.1)
+      activesupport
+      multi_xml
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activesupport (5.2.2)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 0.7, < 2)
+      minitest (~> 5.1)
+      tzinfo (~> 1.1)
+    concurrent-ruby (1.1.4)
+    i18n (1.5.3)
+      concurrent-ruby (~> 1.0)
+    minitest (5.11.3)
+    multi_xml (0.6.0)
+    rake (10.5.0)
+    thread_safe (0.3.6)
+    tzinfo (1.2.5)
+      thread_safe (~> 0.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 1.17)
+  qcloud_cos!
+  rake (~> 10.0)
+
+BUNDLED WITH
+   1.17.1
