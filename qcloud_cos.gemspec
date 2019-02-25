@@ -4,24 +4,24 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "qcloud_cos/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "qcloud_cos"
+  spec.name          = "qcloud-cos"
   spec.version       = QcloudCos::VERSION
   spec.authors       = ["xuxiangyang"]
   spec.email         = ["xxy@xuxiangyang.com"]
 
   spec.summary       = 'qcloud cos ruby sdk'
   spec.description   = 'qcloud cos ruby sdk'
-  spec.homepage      = "http://github.com/xuxiangyang/qcloud_cos"
+  spec.homepage      = "http://github.com/xuxiangyang/qcloud-cos"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+    spec.metadata["allowed_push_host"] = "https://rubygems.org/"
 
     spec.metadata["homepage_uri"] = spec.homepage
-    spec.metadata["source_code_uri"] = "http://github.com/xuxiangyang/qcloud_cos"
-    spec.metadata["changelog_uri"] = "http://github.com/xuxiangyang/qcloud_cos/CHANGELOG.md"
+    spec.metadata["source_code_uri"] = "http://github.com/xuxiangyang/qcloud-cos"
+    spec.metadata["changelog_uri"] = "http://github.com/xuxiangyang/qcloud-cos/CHANGELOG.md"
   else
     raise "RubyGems 2.0 or newer is required to protect against " \
       "public gem pushes."
