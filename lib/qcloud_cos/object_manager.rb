@@ -11,8 +11,9 @@ module QcloudCos
       @http = QcloudCos::Http.new(access_id, access_key, token: token)
     end
 
-    def put_object(path, file, headers = {})
-      http.put(compute_url(path), file.read, headers)
+    def put_object(path, file_or_bin, headers = {})
+      data = file_or_bin.respond_to?(:read) ? IO.binread(file_or_bin) : file_or_bin
+      http.put(compute_url(path), data, headers)
     end
 
     def copy_object(path, copy_source)
