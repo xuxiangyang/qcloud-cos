@@ -5,11 +5,12 @@ require 'digest'
 require 'net/http'
 module QcloudCos
   class Http
-    attr_accessor :access_id, :access_key
+    attr_accessor :access_id, :access_key, :token
 
-    def initialize(access_id, access_key)
+    def initialize(access_id, access_key, token: nil)
       @access_id = access_id
       @access_key = access_key
+      @token = token
     end
 
     def post(url, body = nil, headers = {})
@@ -30,6 +31,7 @@ module QcloudCos
 
     def request(request_klass, url, body = nil, headers = {})
       uri = URI.parse(url)
+      headers["x-cos-security-token"] = token if token
       headers["Authorization"] = compute_auth(request_klass::METHOD, uri.request_uri, headers)
       response = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == "https") do |http|
         request = request_klass.new(uri, headers)

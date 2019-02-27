@@ -1,14 +1,14 @@
 require 'uri'
 module QcloudCos
   class ObjectManager
-    attr_accessor :bucket, :region, :access_id, :access_key, :app_id, :http
-    def initialize(bucket: nil, region: nil, access_id: nil, access_key: nil, app_id: nil)
+    attr_accessor :bucket, :region, :access_id, :access_key, :http, :token
+    def initialize(bucket: nil, region: nil, access_id: nil, access_key: nil, token: nil)
       @bucket = bucket
       @region = region
       @access_id = access_id
       @access_key = access_key
-      @app_id = app_id
-      @http = QcloudCos::Http.new(access_id, access_key)
+      @token = token
+      @http = QcloudCos::Http.new(access_id, access_key, token: token)
     end
 
     def put_object(path, file, headers = {})
