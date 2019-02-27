@@ -52,7 +52,7 @@ module QcloudCos
       q_url_params = query_string.to_s.split("&").map { |s| s.split("=").first }.compact.map(&:downcase).sort.join(";")
 
       sign_key = OpenSSL::HMAC.hexdigest("SHA1", access_key, q_sign_time)
-      http_parameters = query_string.to_s.split("&").map { |s| s.split("=") }.map { |field, value| [field.downcase, value]}.sort_by { |field, value| field}.map { |field, value| [field, value].compact.join("=") }.join("&")
+      http_parameters = query_string.to_s.split("&").map { |s| s.split("=") }.map { |field, value| [field.downcase, value] }.sort_by { |field, _| field.to_s }.map { |field, value| [field, value].compact.join("=") }.join("&")
       http_headers = headers.map { |h, v| [h.downcase, CGI.escape(v)].join("=") }.join("&")
       http_string = "#{method.downcase}\n#{path}\n#{http_parameters}\n#{http_headers}\n"
       string_to_sign = "sha1\n#{q_sign_time}\n#{Digest::SHA1.hexdigest(http_string)}\n"
