@@ -28,7 +28,7 @@ module QcloudCos
     def delete_objects(pathes, quiet = false)
       data = {
         "Quiet" => quiet,
-        "Object" => pathes.map { |p| { "Key" => p }}
+        "Object" => pathes.map { |p| { "Key" => p } },
       }
       http.post(compute_url("/?delete"), data.to_xml(root: "Delete", skip_instruct: true, skip_types: false), "Content-Type" => "application/xml")
     end
