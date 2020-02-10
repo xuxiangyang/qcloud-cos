@@ -16,8 +16,9 @@ module QcloudCos
       http.put(compute_url(path), data, headers)
     end
 
-    def copy_object(path, copy_source)
-      body = http.put(compute_url(path), nil, 'x-cos-copy-source' => copy_source).body
+    def copy_object(path, copy_source, headers = {})
+      headers['x-cos-copy-source'] = copy_source
+      body = http.put(compute_url(path), nil, headers).body
       ActiveSupport::HashWithIndifferentAccess.new(ActiveSupport::XmlMini.parse(body))
     end
 
@@ -33,8 +34,12 @@ module QcloudCos
       http.post(compute_url("/?delete"), data.to_xml(root: "Delete", skip_instruct: true, skip_types: false), "Content-Type" => "application/xml")
     end
 
+    def host
+      "#{bucket}.cos.#{region}.myqcloud.com"
+    end
+
     def compute_url(path)
-      URI.join("https://#{bucket}.cos.#{region}.myqcloud.com", path).to_s
+      URI.join("https://#{host}", path).to_s
     end
   end
 end
